@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script  defer src="./js/login.js"></script> <!-- Añadir el script aquí -->
+</head>
+<body>
+    <div class="login-form">
+        <h2>Inicio de Sesión</h2>
+        <form id="loginForm">
+            <input type="number" id="dni" placeholder="DNI" required>
+            <input type="password" id="password" placeholder="contaseña" required minlength="8">
+            <input type="email" id="email" placeholder="Correo Electrónico" required pattern=".+@gmail\.com|.+@hotmail\.com">
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+    </div>
+</body>
+</html>
