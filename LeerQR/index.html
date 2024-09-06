@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escaneo de QR en el Laboratorio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Escanea el QR ubicado en el laboratorio para continuar</h1>
+        
+        <!-- Botón para iniciar el escaneo del QR -->
+        <button id="btn-start-scan">Iniciar Escaneo</button>
+        
+        <!-- Elemento de video para mostrar la cámara -->
+        <video id="video" autoplay></video>
+        
+        <!-- Botón para detener el escaneo -->
+        <button id="btn-stop-scan" style="display: none;">Detener Escaneo</button>
+
+        <!-- Mensaje de error si el QR es incorrecto -->
+        <p id="error-msg">Código QR incorrecto. Inténtelo de nuevo.</p>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <script src="api_qr.js"></script>
+    <script src="qr.js"></script>
+</body>
+</html>
