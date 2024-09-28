@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/IndexStyle.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Iniciar Sesión</title>
+</head>
+<body class="bodymenu">
+    <div class="login" id="loginForm">
+        <div class="login-header">
+            <h2>Login</h2>
+        </div>
+        <form id="login-form" class="login-form">
+            <div class="login-labels">
+                <label for="nombre">Usuario</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Ingrese su Usuario">
+            </div>
+            <div class="login-labels">
+                <label for="dni">DNI</label>
+                <input type="text" id="dni" name="dni" required placeholder="Ingrese su DNI" maxlength="8">
+            </div>
+            <button type="submit" class="submit-btn">Iniciar</button>
+        </form>
+        <div id="message" 
+        style="display: none; margin: 10px 0 25px; text-align: center;"></div> <!-- Mensaje de éxito o error -->
+    </div>
+    <div class="logod">
+        <img class="logologin ms-5" src="./asset/image/ubp-oniet.png" alt="logo de aniet">
+        <img class="chat ms-5" src="./asset/image/Sin título.png" alt="">
+    </div>
+</body> 
+</html>
+
+    <script>
+        $(document).ready(function() {
+            // Validación para permitir solo números
+            $("#dni").on("input", function() {
+                var valor = $(this).val();
+                
+                // Elimina cualquier carácter que no sea número
+                $(this).val(valor.replace(/\D/g, ''));
+    
+                // Limita la longitud a 8 dígitos
+                if (valor.length > 8) {
+                    $(this).val(valor.slice(0, 8));
+                }
+            });
+    
+            $("#login-form").on("submit", function(e) {
+                e.preventDefault(); // Prevenir el envío tradicional del formulario
+    
+                var nombre = $("#nombre").val();
+                var dni = $("#dni").val();
+    
+                if (dni.length !== 8) {
+                    $("#message").html("El DNI debe tener 8 dígitos.").css("color", "red").fadeIn();
+                    setTimeout(function() {
+                        $("#message").fadeOut();
+                    }, 3000);
+                    return;
+                }
+    
+                $.ajax({
+                    url: 'login.php',
+                    type: 'POST',
+                    data: { nombre: nombre, dni: dni },
+                    success: function(response) {
+                        $("#message").html(response).fadeIn(); // Mostrar mensaje
+    
+                        if (response.includes("exitoso")) {
+                            $("#message").css("color", "green");
+                            setTimeout(function() {
+                                $("#message").fadeOut(); // Ocultar mensaje después de 1 segundo
+                                // Redirigir si es exitoso
+                                window.location.href = "./page/leeQr.html";
+                            }, 3000);
+                        } else {
+                            $("#message").css("color", "red");
+                            setTimeout(function() {
+                                $("#message").fadeOut(); // Ocultar mensaje de error después de 1 segundo
+                            }, 6000);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    
