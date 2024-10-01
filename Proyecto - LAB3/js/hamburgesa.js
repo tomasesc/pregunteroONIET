@@ -1,42 +1,54 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
+    // Elementos del menú de hamburguesa
     const barsMenu = document.querySelector(".bars__menu");
     const containerMenu = document.querySelector(".container__menu");
+
+    // Elementos de los modales
     const modal = document.getElementById("modal");
     const modalEstrategias = document.getElementById("modalEstrategias");
     const modalSobreNosotros = document.getElementById("modalSobreNosotros");
     const modalRanking = document.getElementById("modalRanking");
     const closeModalButtons = document.querySelectorAll(".close");
 
+    // Botones de interacción
     const comoJugarBtn = document.getElementById("comoJugarBtn");
     const estrategiasBtn = document.getElementById("estrategiasBtn");
     const sobreNosotrosBtn = document.getElementById("sobreNosotrosBtn");
     const rankingBtn = document.getElementById("rankingBtn");
     const nextQuestionBtn = document.getElementById("nextQuestionBtn");
 
+    // Elementos del temporizador
     const timerContainer = document.querySelector(".timer-container");
     const timerProgress = document.querySelector(".timer-progress");
     const timerText = document.querySelector(".timer-text");
     let timeLeft = 30;
     let timerInterval;
 
+    // Validación para asegurar que el temporizador tenga sus elementos
+    if (timerContainer && timerProgress && timerText) {
+        startTimer(); // Inicia el temporizador si los elementos están disponibles
+    } else {
+        console.error("No se encontraron los elementos del temporizador en el DOM.");
+    }
+
     function startTimer() {
         timerContainer.classList.add("timer-running");
         timerProgress.style.stroke = "#4caf50";  // Verde inicial
         timerProgress.style.strokeDashoffset = 0; // Asegúrate de que empiece desde 0
         updateTimerText();
-    
+
         timerInterval = setInterval(() => {
             timeLeft--;
             updateTimerText();
-    
+
             // Cambiar gradualmente de verde a rojo
             const redIntensity = Math.min(255, (30 - timeLeft) * 8.5); // Se vuelve rojo gradualmente
             timerProgress.style.stroke = `rgb(${redIntensity}, ${255 - redIntensity}, 0)`;
-    
+
             if (timeLeft <= 5 && timeLeft > 0) {
                 timerContainer.classList.add("timer-warning");
             }
-    
+
             if (timeLeft === 0) {
                 clearInterval(timerInterval);
                 timerContainer.classList.remove("timer-running");
@@ -46,17 +58,20 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById("time-up-text").style.display = "block"; // Muestra el texto
                 disableOptions();
             }
-            
+
         }, 1000); // Inicia el temporizador real
     }
-    
 
     function updateTimerText() {
-        timerText.textContent = `${timeLeft}s`;
+        if (timerText) {
+            timerText.textContent = `${timeLeft}s`;
+        } else {
+            console.error("El elemento timerText no se encontró en el DOM.");
+        }
     }
-    
 
     function disableOptions() {
+        const buttons = document.querySelectorAll(".option");
         buttons.forEach(button => {
             button.disabled = true;
             if (button.textContent === correctAnswer) {
@@ -67,9 +82,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    startTimer();
-
-    barsMenu.addEventListener("click", function() {
+    // Manejador para el botón de hamburguesa
+    barsMenu.addEventListener("click", function () {
         animateBars();
         containerMenu.classList.toggle("menu__active");
         document.body.classList.toggle("menu__active");
@@ -85,28 +99,30 @@ document.addEventListener("DOMContentLoaded", function() {
         Line3__bars.classList.toggle("activeline3__bars-menu");
     }
 
-    comoJugarBtn.addEventListener("click", function(e) {
+    // Mostrar los diferentes modales según el botón
+    comoJugarBtn.addEventListener("click", function (e) {
         e.preventDefault();
         modal.style.display = "block";
     });
 
-    estrategiasBtn.addEventListener("click", function(e) {
+    estrategiasBtn.addEventListener("click", function (e) {
         e.preventDefault();
         modalEstrategias.style.display = "block";
     });
 
-    sobreNosotrosBtn.addEventListener("click", function(e) {
+    sobreNosotrosBtn.addEventListener("click", function (e) {
         e.preventDefault();
         modalSobreNosotros.style.display = "block";
     });
 
-    rankingBtn.addEventListener("click", function(e) {
+    rankingBtn.addEventListener("click", function (e) {
         e.preventDefault();
         modalRanking.style.display = "block";
     });
 
+    // Cerrar los modales al hacer clic en los botones de cerrar
     closeModalButtons.forEach(closeBtn => {
-        closeBtn.addEventListener("click", function() {
+        closeBtn.addEventListener("click", function () {
             modal.style.display = "none";
             modalEstrategias.style.display = "none";
             modalSobreNosotros.style.display = "none";
@@ -114,7 +130,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    window.addEventListener("click", function(event) {
+    // Cerrar los modales al hacer clic fuera de ellos
+    window.addEventListener("click", function (event) {
         if (event.target === modal) {
             modal.style.display = "none";
         } else if (event.target === modalEstrategias) {
@@ -126,37 +143,35 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    // Manejadores para las opciones y cambio de pregunta
     const correctAnswer = "París";
     const buttons = document.querySelectorAll(".option");
 
+    buttons.forEach(button => {
+        button.addEventListener("click", function () {
+            clearInterval(timerInterval); // Detener el temporizador al seleccionar una opción
+            timerContainer.classList.remove("timer-running"); // Detener la animación de la barra de progreso
 
-buttons.forEach(button => {
-    button.addEventListener("click", function() {
-        clearInterval(timerInterval); // Detener el temporizador al seleccionar una opción
-        timerContainer.classList.remove("timer-running"); // Detener la animación de la barra de progreso
+            // Congelar el color actual de la barra de progreso
+            const currentStrokeColor = timerProgress.style.stroke;
+            timerProgress.style.stroke = currentStrokeColor; // Mantener el color actual
 
-        // Congelar el color actual de la barra de progreso
-        const currentStrokeColor = timerProgress.style.stroke;
-        timerProgress.style.stroke = currentStrokeColor; // Mantener el color actual
+            // Mantener el valor de strokeDashoffset
+            const offset = (timeLeft / 30) * 282.6; // Ajusta según el tiempo restante
+            timerProgress.style.strokeDashoffset = 282.6 - offset; // Rellenar hasta el punto actual
 
-        // Mantener el valor de strokeDashoffset
-        const offset = (timeLeft / 30) * 282.6; // Ajusta según el tiempo restante
-        timerProgress.style.strokeDashoffset = 282.6 - offset; // Rellenar hasta el punto actual
+            buttons.forEach(btn => btn.style.backgroundColor = "#f0f0f0");
+            if (this.textContent === correctAnswer) {
+                this.style.backgroundColor = "green";
+            } else {
+                this.style.backgroundColor = "red";
+            }
+            disableOptions();
+        });
+    });
 
-        buttons.forEach(btn => btn.style.backgroundColor = "#f0f0f0");
-        if (this.textContent === correctAnswer) {
-            this.style.backgroundColor = "green";
-        } else {
-            this.style.backgroundColor = "red";
-        }
-        disableOptions();
-    }); 
-});
-    
-    
-    
-
-    nextQuestionBtn.addEventListener("click", function() {
+    // Manejador para ir a la siguiente pregunta
+    nextQuestionBtn.addEventListener("click", function () {
         window.location.href = "pregunta2.html";
     });
 });

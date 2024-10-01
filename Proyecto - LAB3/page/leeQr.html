@@ -3,44 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu hamburguesa</title>
+    <title>Leer QR</title>
+    <script defer src="../js/hamburgesa.js"></script>
+    <link rel="stylesheet" href="../css/hamburgesa.css">
     <link rel="stylesheet" href="../css/hamburgesa.css">
     <link rel="stylesheet" href="../css/IndexStyle.css">
-    <script defer src="../js/hamburgesa.js"></script>
-    <script defer src="../js/qr.js"></script>
-    <script defer src="../js/api_qr.js"></script>
 
-</head>
+</head> 
 <body class="bodyQR">
     <header class="cabeza">
-
         <div class="CP">
-            <h3 class="puntos">200</h3>
-            <h3>Usuario</h3>
+          <h3 class="puntos">200</h3>
+          <h3>Usuario</h3>
         </div>
         <div></div>
-            <img class="logoheader" src="../asset/image/oniet-logo.png" alt="Logo del sitio" class="logo"> 
+          <img class="logoheader" src="../asset/image/oniet-logo.png" alt="Logo del sitio" class="logo"> 
         </div>
     
         <div class="bars__menu">
-            <span class="line1__bars-menu"></span>
-            <span class="line2__bars-menu"></span>
-            <span class="line3__bars-menu"></span>
-        </div>
+          <span class="line1__bars-menu"></span>
+          <span class="line2__bars-menu"></span>
+          <span class="line3__bars-menu"></span>
+      </div>
     
-        <!-- Contenedor del menú que se muestra/oculta -->
-        <div class="container__menu">
-            <nav>
-                <ul>
-                    <li><a href="#" id="comoJugarBtn">COMO JUGAR</a></li>
-                    <li><a href="#" id="estrategiasBtn">ESTRATEGIAS</a></li>
-                    <li><a href="#" id="sobreNosotrosBtn">SOBRE NOSOTROS</a></li>
-                    <li><a href="#" id="rankingBtn">RANKING</a></li>
-                </ul>
-            </nav>
-        </div>
-        
-    </header>
+      <!-- Contenedor del menú que se muestra/oculta -->
+      <div class="container__menu">
+          <nav>
+              <ul>
+                  <li><a href="#" id="comoJugarBtn">COMO JUGAR</a></li>
+                  <li><a href="#" id="estrategiasBtn">ESTRATEGIAS</a></li>
+                  <li><a href="#" id="sobreNosotrosBtn">SOBRE NOSOTROS</a></li>
+                  <li><a href="#" id="rankingBtn">RANKING</a></li>
+              </ul>
+          </nav>
+      </div>
+      </header>
 
     <main class="leeqr">
     <section class="psita">
@@ -65,35 +62,38 @@
     </main>
     <!-- Modales -->
     <div id="modal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Cómo Jugar</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-    </div>
-
-    <div id="modalEstrategias" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Estrategias</h2>
-        <p>Las mejores estrategias para mejorar tu juego. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-    </div>
-
-    <div id="modalSobreNosotros" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Sobre Nosotros</h2>
-        <p>Conoce más sobre nuestro equipo y nuestra misión. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-    </div>
-
-    <div id="modalRanking" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Ranking</h2>
-        <p>Aquí están los mejores jugadores clasificados. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-    </div>
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Cómo Jugar</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+    
+      <div id="modalEstrategias" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Estrategias</h2>
+          <p>Las mejores estrategias para mejorar tu juego. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+    
+      <div id="modalSobreNosotros" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Sobre Nosotros</h2>
+          <p>Conoce más sobre nuestro equipo y nuestra misión. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+    
+      <div id="modalRanking" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Ranking</h2>
+          <p>Aquí están los mejores jugadores clasificados. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+      
 </body>
+<script src="../js/qr.js"></script>
+<script src="../js/api_qr.js"></script>
 </html>
