@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leer QR</title>
     <script defer src="../js/hamburgesa.js"></script>
+    <script defer src="../js/ranking.js"></script>
     <link rel="stylesheet" href="../css/hamburgesa.css">
     <link rel="stylesheet" href="../css/hamburgesa.css">
     <link rel="stylesheet" href="../css/IndexStyle.css">
@@ -87,11 +88,17 @@
     
       <div id="modalRanking" class="modal">
         <div class="modal-content">
-          <span class="close">&times;</span>
-          <h2>Ranking</h2>
-          <p>Aquí están los mejores jugadores clasificados. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <span class="close">&times;</span>
+            <h2 class="top">Ranking</h2>
+            <p class="top">Aquí están los mejores jugadores clasificados. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <section class="contorno">
+                <h3 class="top">Top 10</h3>
+                <ul id="rankingList">
+                    <!-- El contenido del ranking se llenará aquí -->
+                </ul>
+            </section>
         </div>
-      </div>
+    </div>
       
 </body>
 <script src="../js/qr.js"></script>

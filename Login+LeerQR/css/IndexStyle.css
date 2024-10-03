@@ -244,4 +244,13 @@ html{
         
     
     }
+    .contorno{
+        border: 3px solid black;
+        .top{
+            list-style-type: none;
+            margin-bottom: 10px;
+        }
+
+    }
+
 }
